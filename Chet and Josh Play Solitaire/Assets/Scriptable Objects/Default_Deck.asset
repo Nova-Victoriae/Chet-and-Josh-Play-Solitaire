@@ -12,3 +12,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153273f02ef91ec46bc5b51ad8f63e0d, type: 3}
   m_Name: Default_Deck
   m_EditorClassIdentifier: 
+  _deckName: Default Deck
+  _deckCardBack: {fileID: 21300000, guid: 60e3704316d05184ebfbd13fb1a2d3da, type: 3}
+  _deckCardFrounts:
+  - {fileID: 21300000, guid: 22c2cdcf5c37a664fa53bb9db4b32fc9, type: 3}
+  - {fileID: 21300000, guid: 7490a86e4edf59a4aaa213fa83a633ca, type: 3}
+  - {fileID: 21300000, guid: df67a9fa4fe10544ca7e995bca067646, type: 3}
+  - {fileID: 21300000, guid: 875e483ab730fa94d8cd9290464c57c3, type: 3}
+  - {fileID: 21300000, guid: 26995522c9cc71c468427ac1d588a4bc, type: 3}
+  - {fileID: 21300000, guid: e10e874d133a56d4e98d069e9db95ddb, type: 3}
+  - {fileID: 21300000, guid: 2536941e25f9383468fe314fc0712ac3, type: 3}
+  - {fileID: 21300000, guid: 61bc18494dffe3c49b40f245acada736, type: 3}
+  - {fileID: 21300000, guid: 90cded5d7f6141c42af3a97f4ed7cb01, type: 3}
+  - {fileID: 21300000, guid: d21215f4578922f499ea8aa25cee66d3, type: 3}
+  - {fileID: 21300000, guid: b1bbc91a68937dd4c8400fa953c0a46f, type: 3}
+  - {fileID: 21300000, guid: 1abc6a510335ce541a86fb6166be301a, type: 3}
+  - {fileID: 21300000, guid: 7d622e54a955b4c4abeb9a30e33efb04, type: 3}
+  - {fileID: 21300000, guid: 5e3c983b1af346a4691136c3ca4fd78e, type: 3}
+  - {fileID: 21300000, guid: 69be83b608845054392dd81950ef9540, type: 3}
+  - {fileID: 21300000, guid: aec9d6fc1ad2d0a428a6aa554c80458b, type: 3}
+  - {fileID: 21300000, guid: 3bac36cf4d96761489c3f53eb814e436, type: 3}
+  - {fileID: 21300000, guid: 9a5687efddaa7924b87d875135e4fe33, type: 3}
+  - {fileID: 21300000, guid: 8ebee0ac73869614c86a286139e0027b, type: 3}
+  - {fileID: 21300000, guid: 23a0e44698bdefb4db7b9e1679577d5c, type: 3}
+  - {fileID: 21300000, guid: c47980cb6e729cc41b55c2d53a1c2d87, type: 3}
+  - {fileID: 21300000, guid: fac8381efcad4404db72d233545298d1, type: 3}
+  - {fileID: 21300000, guid: cc48271ee6f0c3b4585175219db25610, type: 3}
+  - {fileID: 21300000, guid: 5ba8a4959b89ab245ae9c85b7de42685, type: 3}
+  - {fileID: 21300000, guid: 6f0c8d1102555d046b35284818133ca6, type: 3}
+  - {fileID: 21300000, guid: 94b8ee47277983c49a25e68dc6847e44, type: 3}
+  - {fileID: 21300000, guid: 3e3c78978eee95545a3cd4a953d92ce1, type: 3}
+  - {fileID: 21300000, guid: 3ec90df1c9cd65640a5e3e7f09ac4b76, type: 3}
+  - {fileID: 21300000, guid: 36dc31ad9a1737b42b5f6265d6bfde94, type: 3}
+  - {fileID: 21300000, guid: cbacb6c6571a36941850590328a58fe4, type: 3}
+  - {fileID: 21300000, guid: 1ab3f59dd4930764884bca48bc96115f, type: 3}
+  - {fileID: 21300000, guid: 83a4884601f10324a9489b9e3e8a538f, type: 3}
+  - {fileID: 21300000, guid: 65f99e148d79f1e4e89fb29bcc27f905, type: 3}
+  - {fileID: 21300000, guid: 8edeacc1379c0b64e86f379f4d6a069c, type: 3}
+  - {fileID: 21300000, guid: c39c43d199521ac4594d63598357bc30, type: 3}
+  - {fileID: 21300000, guid: 61bc7907e952f45448da632559cbcec3, type: 3}
+  - {fileID: 21300000, guid: 236a437ed97a24f42aadf1bcc729fb74, type: 3}
+  - {fileID: 21300000, guid: 5bd878d430e4eb14abad405665d90ce1, type: 3}
+  - {fileID: 21300000, guid: 7d622e54a955b4c4abeb9a30e33efb04, type: 3}
+  - {fileID: 21300000, guid: e94484c25b035ce4786557d3a03fdfbf, type: 3}
+  - {fileID: 21300000, guid: a9dee14c21185fb4d9427cf1efb7916b, type: 3}
+  - {fileID: 21300000, guid: b736cf4c76e31554783940da019e18e8, type: 3}
+  - {fileID: 21300000, guid: 7b7fcc664c9422e4499a8930b9ef7457, type: 3}
+  - {fileID: 21300000, guid: 9fe4f09aa97ea0149abcaabf05ff690a, type: 3}
+  - {fileID: 21300000, guid: d71e31d9a1b1a5c4e85acb988a84e395, type: 3}
+  - {fileID: 21300000, guid: fa24e093bd5c99e4eaab2619f6487bec, type: 3}
+  - {fileID: 21300000, guid: 6bee4b5971d8b9b4aba8ac2bb1d4ab82, type: 3}
+  - {fileID: 21300000, guid: b0eb052f04587ef4482e2a774ec22cf6, type: 3}
+  - {fileID: 21300000, guid: a6b5e5e1d88933947bab4f4983c47af2, type: 3}
+  - {fileID: 21300000, guid: 523cd9ca05fda8845aae4ad51674f3d9, type: 3}
+  - {fileID: 21300000, guid: 5ef3dfcea7e4f204f8c0a236b309b247, type: 3}
+  - {fileID: 21300000, guid: e49815c7cdf523c4183145cf8c7d28e6, type: 3}
