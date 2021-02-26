@@ -2,17 +2,87 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The columns of the deck. This is the most basic type of column. Really just a fancy list of cards.
+/// </summary>
 public class Column : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int CardCount { get { return _cards.Count; } }
+
+    protected List<Card> _cards = new List<Card>();
+
+    /// <summary>
+    /// Gets all the face up cards in the column. This should be the same for all columns.
+    /// The WasteColumn, Tableau Column, and Foundation Column, and Base Column.
+    /// </summary>
+    /// <returns>
+    /// All the face up cards in the column. Should be a copy of the cards in the column. 
+    /// Should be override in the Tableau Column as that is the only column with face down cards.
+    /// </returns>
+    public virtual List<Card> GetFaceUpCards ()
     {
-        
+        return _cards;
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Adds the card to the column.
+    /// </summary>
+    /// <param name="card">The card to add to the column</param>
+    public virtual void AddToColumn (Card card)
     {
-        
+        _cards.Add(card);
+    }
+
+    /// <summary>
+    /// Adds the card at the index to the column.
+    /// </summary>
+    /// <param name="card">The card to add.</param>
+    /// <param name="index">The index to add the card to.</param>
+    public virtual void AddToColumnAt (Card card, int index)
+    {
+        _cards.Insert(index, card);
+    }
+
+    /// <summary>
+    /// Adds the cards from a column to the end of this column.
+    /// </summary>
+    /// <param name="column">The column to add to this column.</param>
+    public virtual void AddColumn (Column column)
+    {
+        for (var i = 0; i < column.CardCount; i++)
+        {
+            _cards.Add(column.PopCardAt(i));
+        }
+    }
+
+    /// <summary>
+    /// Removes the card from the column.
+    /// </summary>
+    /// <param name="card">The card to remove.</param>
+    public virtual void RemoveCard (Card card)
+    {
+        _cards.Remove(card);
+    }
+
+    /// <summary>
+    /// Remove a card from the column at the index.
+    /// </summary>
+    /// <param name="index">The index </param>
+    public virtual void RemoveCardAt (int index)
+    {
+        _cards.RemoveAt(index);
+    }
+
+    /// <summary>
+    /// Pops (removes) the card at the index.
+    /// </summary>
+    /// <param name="index">The index of the card to be popped.</param>
+    /// <returns>The popped card.</returns>
+    public virtual Card PopCardAt (int index)
+    {
+        var poppedCard = _cards[index];
+        _cards.Remove(_cards[index]);
+
+        return poppedCard;
     }
 }
