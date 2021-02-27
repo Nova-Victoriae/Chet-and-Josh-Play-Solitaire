@@ -28,8 +28,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     /// </summary>
     /// <param name="rank">The card's rank (SPADES, DIAMONDS, CLUBS, HEARTS)</param>
     /// <param name="suit">The card's suit (ACE, TWO, ..., QUEEN, KING)</param>
-    /// <param name="face">The card's face sprite/image. This should be set a scriptable object called "CardData".</param>
-    /// <param name="back">The card's back sprite/image. This should be Set a scriptable object called "CardData".</param>
+    /// <param name="face">The card's face sprite/image.</param>
+    /// <param name="back">The card's back sprite/image.</param>
     public void DefineCard (CardRank rank, CardSuit suit, Sprite face, Sprite back)
     {
         Rank = rank;
@@ -61,6 +61,28 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerExit (PointerEventData eventData)
     {
         _spriteRenderer.color = Color.white;
+    }
+
+    /// <summary>
+    /// Flips the card.
+    /// </summary>
+    public void Flip ()
+    {
+        IsFacingUp = !IsFacingUp;
+
+        if (IsFacingUp)
+            _spriteRenderer.sprite = _faceSprite;
+        else
+            _spriteRenderer.sprite = _backSprite;
+    }
+
+    /// <summary>
+    /// Sets the sorting order of the card.
+    /// </summary>
+    /// <param name="order">The sorting order to set.</param>
+    public void SetOrderSorting (int order)
+    {
+        _spriteRenderer.sortingOrder = order;
     }
 
     /// <summary>

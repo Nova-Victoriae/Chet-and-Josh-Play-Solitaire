@@ -43,9 +43,11 @@ public class Deck : MonoBehaviour
                     Debug.LogError("There is no card script attaced to the card prefab. Attach the card script to the card prefab.");
                 }
 
-                card.DefineCard((Card.CardRank) (rank + 1), (Card.CardSuit) suit, data.DeckCardBack, data.DeckCardFrounts[((suit + 1) * (rank + 1)) - 1]);
+                card.DefineCard((Card.CardRank) (rank + 1), (Card.CardSuit) suit, data.DeckCardFrounts[((suit + 1) * (rank + 1)) - 1], data.DeckCardBack);
                 cardObj.name = card.ToString();
                 _cards.Add(card);
+
+                cardObj.SetActive(false);
             }
         }
     }
@@ -62,7 +64,25 @@ public class Deck : MonoBehaviour
         return card;
     }
 
-    // (int) DateTime.Now.Ticks & 0x0000FFFF
+    public void DealGame (List<TableauColumn> tableauColumns, int cardsToDeal = 28)
+    {
+        var startingIndex = 0;
+
+        for (var i = 0; i < cardsToDeal; i++)
+        {
+            for (var index = startingIndex; index < tableauColumns.Count; index++)
+            {
+                //Debug.LogFormat("I_S: {0} - I: {1} - i: {2}", startingIndex, index, i);
+                var card = Deal();
+                tableauColumns[index].AddToColumn(card);
+                card.transform.position = tableauColumns[index].transform.localPosition;
+                card.gameObject.SetActive(true);
+            }
+
+            startingIndex++;
+        }
+    }
+
     /// <summary>
     /// Shuffles the deck with the given seed.
     /// </summary>

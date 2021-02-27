@@ -25,12 +25,21 @@ public class Column : MonoBehaviour
     }
 
     /// <summary>
+    /// Flips the top card of the column.
+    /// </summary>
+    public void FlipTopCard ()
+    {
+        _cards[_cards.Count - 1].Flip();
+    }
+
+    /// <summary>
     /// Adds the card to the column.
     /// </summary>
     /// <param name="card">The card to add to the column</param>
     public virtual void AddToColumn (Card card)
     {
         _cards.Add(card);
+        card.transform.parent = transform;
     }
 
     /// <summary>
@@ -41,6 +50,7 @@ public class Column : MonoBehaviour
     public virtual void AddToColumnAt (Card card, int index)
     {
         _cards.Insert(index, card);
+        card.transform.parent = transform;
     }
 
     /// <summary>
@@ -84,5 +94,34 @@ public class Column : MonoBehaviour
         _cards.Remove(_cards[index]);
 
         return poppedCard;
+    }
+
+    /// <summary>
+    /// Pops the frist card (index = 0) of the column.
+    /// </summary>
+    /// <returns>The card at index 0.</returns>
+    public virtual Card PopBottom ()
+    {
+        return PopCardAt(0);
+    }
+
+    /// <summary>
+    /// Pops the top card (last element of the list) of the column.
+    /// </summary>
+    /// <returns>The card at the last index of the list.</returns>
+    public virtual Card PopTop ()
+    {
+        return PopCardAt(CardCount - 1);
+    }
+
+    public virtual void AdjustSelf ()
+    {
+        var index = 0;
+        foreach (Card card in _cards)
+        {
+            card.SetOrderSorting(index);
+
+            index++;
+        }
     }
 }
