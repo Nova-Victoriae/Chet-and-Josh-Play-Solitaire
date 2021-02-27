@@ -33,6 +33,7 @@ public class Deck : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
         _spriteRenderer.sprite = data.DeckCardBack;
 
+        var linearCount = 0;
         // This feels like I'm going to break the universe not starting the for loop with i, j, x, y, ...
         for (var suit = 0; suit < _SUIT_SIZE; suit++)
         {
@@ -46,12 +47,16 @@ public class Deck : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                     Debug.LogError("There is no card script attaced to the card prefab. Attach the card script to the card prefab.");
                 }
 
-                card.DefineCard((Card.CardRank) (rank + 1), (Card.CardSuit) suit, data.DeckCardFrounts[((suit + 1) * (rank + 1)) - 1], data.DeckCardBack);
+                //Debug.LogFormat("Index: {0}, Sprite Name: {1}", ((suit + 1) * (rank + 1)) - 1, data.DeckCardFrounts[((suit + 1) * (rank + 1)) - 1].name);
+                Debug.LogFormat("Linear Count: {0}", linearCount);
+                card.DefineCard((Card.CardRank) (rank), (Card.CardSuit) suit, data.DeckCardFrounts[linearCount], data.DeckCardBack);
                 cardObj.name = card.ToString();
                 _cards.Add(card);
 
                 cardObj.SetActive(false);
+                linearCount += 1;
             }
+            //linearCount += 1;
         }
     }
 
@@ -101,6 +106,7 @@ public class Deck : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                 var card = Deal();
                 tableauColumns[index].AddToColumn(card);
                 card.transform.position = tableauColumns[index].transform.localPosition;
+                card.ParentColumn = tableauColumns[index];
                 card.gameObject.SetActive(true);
             }
 
@@ -156,9 +162,13 @@ public class Deck : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             for (var i = 0; i < wasteCount; i++)
             {
                 var card = _wasteColumn.PopTop();
+
                 card.transform.parent = transform;
                 card.transform.position = transform.position;
+                card.ParentColumn = _wasteColumn;
+                card.gameObject.SetActive(false);
                 card.Flip();
+
                 _cards.Add(card);
             }
         }
@@ -171,6 +181,7 @@ public class Deck : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                 var card = Deal();
                 card.gameObject.SetActive(true);
                 card.transform.position = _wasteColumn.transform.position;
+                card.ParentColumn = null;
                 card.Flip();
                 _wasteColumn.AddToColumn(card);
             }

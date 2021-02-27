@@ -47,7 +47,7 @@ public class GameController : Singleton<GameController>
         {
             var deckObj = Instantiate(_deckPrefab, transform.position, Quaternion.identity, _deckLocation);
 
-            deckObj.name = "deck";
+            deckObj.name = "Deck";
             deckObj.transform.position = _deckLocation.position;
 
             var deck = deckObj.GetComponent<Deck>();

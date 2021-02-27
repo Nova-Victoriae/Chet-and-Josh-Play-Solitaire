@@ -8,15 +8,17 @@ using UnityEngine.EventSystems;
 /// </summary>
 [RequireComponent (typeof (SpriteRenderer))]
 [RequireComponent (typeof (BoxCollider2D))]
-public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
     public enum CardSuit { SPADES, DIAMONDS, CLUBS, HEARTS }
-    public enum CardRank { ACE = 1, TWO = 2, THREE = 3, FOUR = 4, FIVE = 5, SIX = 6, SEVEN = 7, EIGHT = 8, NINE = 9, TEN = 10, JACK = 11, QUEEN = 12, KING = 13 }
+    public enum CardRank { ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING }
 
     public CardSuit Suit { get; private set; }
     public CardRank Rank { get; private set; }
     public bool IsFacingUp { get; set; } = false;
     public bool IsRed { get { return Suit == CardSuit.DIAMONDS || Suit == CardSuit.HEARTS; } }
+    public bool IsPickedUp { get; set; }
+    public Column ParentColumn { get; set; }
 
     private SpriteRenderer _spriteRenderer = null;
     private Sprite _faceSprite = null;
@@ -49,6 +51,26 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerEnter (PointerEventData eventData)
     {
         _spriteRenderer.color = _highLightColor;
+    }
+
+    public void OnPointerDown (PointerEventData eventData)
+    {
+        /*foreach (var obj in eventData.hovered)
+        {
+            Debug.LogFormat("Object Name: {0} - Down Press", obj.name);
+        }*/
+        IsPickedUp = true;
+        transform.parent = null;
+    }
+
+    public void OnPointerUp (PointerEventData eventData)
+    {
+        /*foreach (var obj in eventData.hovered)
+        {
+            Debug.LogFormat("Object Name: {0} - Up Press", obj.name);
+        }*/
+        IsPickedUp = false;
+        transform.parent = ParentColumn.transform;
     }
 
     /// <summary>
@@ -100,5 +122,14 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void Update()
+    {
+        if (IsPickedUp)
+        {
+            var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = mousePosition;
+        }
     }
 }
