@@ -8,6 +8,11 @@ using UnityEngine;
 public class Column : MonoBehaviour
 {
     public int CardCount { get { return _cards.Count; } }
+    public List<Card> Cards { get { return _cards; } }
+    [SerializeField] protected Vector3 _offset = Vector3.zero;
+    [SerializeField] protected int _totalCardsToShow = 9;
+
+
 
     protected List<Card> _cards = new List<Card>();
 
@@ -114,14 +119,26 @@ public class Column : MonoBehaviour
         return PopCardAt(CardCount - 1);
     }
 
+    /// <summary>
+    /// Adjusts each card in the column.
+    /// </summary>
     public virtual void AdjustSelf ()
     {
-        var index = 0;
-        foreach (Card card in _cards)
+        for (var i = 0; i < _cards.Count; i++)
         {
-            card.SetOrderSorting(index);
+            var indexToStartOffsetAt = CardCount - _totalCardsToShow; // Todo think of better name.
 
-            index++;
+            if (i > indexToStartOffsetAt || _cards.Count < _totalCardsToShow)
+            {
+                var adjustedIndex = (_cards.Count < _totalCardsToShow) ? i : i - indexToStartOffsetAt;
+                _cards[i].transform.position = transform.position + (_offset * adjustedIndex);
+            }
+            else
+            {
+                _cards[i].transform.position = transform.position;
+            }
+
+            _cards[i].SetOrderSorting(i);
         }
     }
 }

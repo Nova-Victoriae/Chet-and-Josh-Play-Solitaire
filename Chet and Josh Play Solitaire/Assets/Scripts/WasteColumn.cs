@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class WasteColumn : Column
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    /// <summary>
+    /// Adjusts the wastes column. Maybe I should move this into the column class and maybe get rid of this class?
+    /// Seems like the every column should work like this.
+    /// </summary>
+    
 }
