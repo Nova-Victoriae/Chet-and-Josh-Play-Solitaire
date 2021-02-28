@@ -60,7 +60,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             Debug.LogFormat("Object Name: {0} - Down Press", obj.name);
         }*/
         IsPickedUp = true;
-        transform.parent = null;
+        //transform.parent = null;
+        ParentColumn.RemoveCard(this);
+        ParentColumn.AdjustSelf();
+
+        GameController.Instance.TempColumn.AddToColumn(this);
     }
 
     public void OnPointerUp (PointerEventData eventData)
@@ -71,6 +75,27 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         }*/
         IsPickedUp = false;
         transform.parent = ParentColumn.transform;
+
+        Column columnToAddTo = null;
+
+        foreach (GameObject obj in eventData.hovered)
+        {
+            var temp = obj.GetComponent<Column>();
+
+            if (temp != null && !temp.tag.Equals("Waste"))
+            {
+                columnToAddTo = temp;
+            }
+        }
+
+        if (columnToAddTo != null)
+        {
+            ParentColumn = columnToAddTo;
+        }
+
+        ParentColumn.AddColumn(GameController.Instance.TempColumn);
+        GameController.Instance.TempColumn.AdjustSelf();
+        ParentColumn.AdjustSelf();
     }
 
     /// <summary>
@@ -129,6 +154,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         if (IsPickedUp)
         {
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0;
             transform.position = mousePosition;
         }
     }

@@ -165,7 +165,7 @@ public class Deck : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
                 card.transform.parent = transform;
                 card.transform.position = transform.position;
-                card.ParentColumn = _wasteColumn;
+                card.ParentColumn = null;
                 card.gameObject.SetActive(false);
                 card.Flip();
 
@@ -181,7 +181,7 @@ public class Deck : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                 var card = Deal();
                 card.gameObject.SetActive(true);
                 card.transform.position = _wasteColumn.transform.position;
-                card.ParentColumn = null;
+                card.ParentColumn = _wasteColumn;
                 card.Flip();
                 _wasteColumn.AddToColumn(card);
             }

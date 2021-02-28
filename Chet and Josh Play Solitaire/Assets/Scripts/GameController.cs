@@ -5,8 +5,12 @@ using UnityEngine;
 /// <summary>
 /// This is a temp. Game Controller.
 /// </summary>
-public class GameController : Singleton<GameController>
+public class GameController : MonoBehaviour
 {
+    public static GameController Instance { get { return _instance; } }
+
+    public Column TempColumn { get; private set; }
+
     [SerializeField] private Color _background = Color.green;
 
     [SerializeField] private GameObject _deckPrefab = null;
@@ -15,9 +19,24 @@ public class GameController : Singleton<GameController>
     private Transform _deckLocation = null;
     private List<TableauColumn> _tableauColumns = new List<TableauColumn>();
 
+    private static GameController _instance;
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
+
     private void Start()
     {
         Camera.main.backgroundColor = _background;
+        TempColumn = GameObject.FindGameObjectWithTag("Temp Column").GetComponent<Column>();
 
         _deckLocation = GameObject.FindGameObjectWithTag("Deck").transform;
         
