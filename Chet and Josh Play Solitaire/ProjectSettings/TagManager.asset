@@ -8,6 +8,7 @@ TagManager:
   - Foundation
   - Waste
   - Deck
+  - Temp Column
   layers:
   - Default
   - TransparentFX

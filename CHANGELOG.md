@@ -1,6 +1,11 @@
 ﻿# Change Log
 
-## Version 0.1.0.0 - 2/26/2021
+## Version 0.3.0.0 - 2/27/2021
+- Fixed card dragging.
+- Adding between columns work.
+- **Known Issues: ** Sometimes after adding to a column that was just adjusted the sorting order get messed up. This only happens to the top card of the column.
+
+## Version 0.2.0.0 - 2/26/2021
 - Added the interaction between the deck and waste columns.
 - Started card dragging.
 - Changed the waste column into a basic column.
@@ -8,7 +13,7 @@
 - Edited [README.md](https://github.com/Nova-Victoriae/Chet-and-Josh-Play-Solitaire/blob/main/README.md)
 - **Known Issues:** When dragging a card the card vanishes.
 
-## Version 0.2.0.0 - 2/25/2021
+## Version 0.1.0.0 - 2/25/2021
 - Added cards and have them highlighting and being created with a prefab.
 - Started columns.
 - Added the deck and dealing functionality.
