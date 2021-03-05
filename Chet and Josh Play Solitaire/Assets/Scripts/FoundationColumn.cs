@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class FoundationColumn : Column
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Card.CardSuit suit = Card.CardSuit.SPADES;
 
-    // Update is called once per frame
-    void Update()
+    public override void AddColumn(Column column)
     {
-        
+        if (IsEmpty && column.Cards[0].Suit == suit && column.Cards[0].Rank == Card.CardRank.ACE)
+        {
+            _cards.Add(column.PopTop());
+        }
     }
 }

@@ -8,6 +8,7 @@ using UnityEngine;
 public class Column : MonoBehaviour
 {
     public int CardCount { get { return _cards.Count; } }
+    public bool IsEmpty { get { return (_cards.Count == 0) ? true : false; } }
     public List<Card> Cards { get { return _cards; } }
     [SerializeField] protected Vector3 _offset = Vector3.zero;
     [SerializeField] protected int _totalCardsToShow = 9;

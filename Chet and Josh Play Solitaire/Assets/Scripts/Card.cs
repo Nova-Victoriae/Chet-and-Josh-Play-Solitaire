@@ -50,31 +50,29 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     /// </param>
     public void OnPointerEnter (PointerEventData eventData)
     {
-        _spriteRenderer.color = _highLightColor;
+        //_spriteRenderer.color = _highLightColor;
+        if (IsFacingUp)
+            CardUtility.OnPointerEnter(this);
     }
 
     public void OnPointerDown (PointerEventData eventData)
     {
-        /*foreach (var obj in eventData.hovered)
-        {
-            Debug.LogFormat("Object Name: {0} - Down Press", obj.name);
-        }*/
-        IsPickedUp = true;
+
+        /*IsPickedUp = true;
         //transform.parent = null;
         ParentColumn.RemoveCard(this);
         ParentColumn.AdjustSelf();
 
-        GameController.Instance.TempColumn.AddToColumn(this);
+        GameController.Instance.TempColumn.AddToColumn(this);*/
+        if (IsFacingUp)
+            CardUtility.OnPointerDown(this);
     }
 
     public void OnPointerUp (PointerEventData eventData)
     {
-        /*foreach (var obj in eventData.hovered)
-        {
-            Debug.LogFormat("Object Name: {0} - Up Press", obj.name);
-        }*/
-        IsPickedUp = false;
-        transform.parent = ParentColumn.transform;
+        if (IsFacingUp)
+            CardUtility.OnPointerUp(this);
+        /*IsPickedUp = false;
 
         Column columnToAddTo = null;
 
@@ -95,7 +93,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
         ParentColumn.AddColumn(GameController.Instance.TempColumn);
         GameController.Instance.TempColumn.AdjustSelf();
-        ParentColumn.AdjustSelf();
+        ParentColumn.AdjustSelf();*/
     }
 
     /// <summary>
@@ -107,7 +105,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     /// </param>
     public void OnPointerExit (PointerEventData eventData)
     {
-        _spriteRenderer.color = Color.white;
+        //_spriteRenderer.color = Color.white;
+        if (IsFacingUp)
+            CardUtility.OnPointerExit(this);
     }
 
     /// <summary>
@@ -123,6 +123,11 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             _spriteRenderer.sprite = _backSprite;
     }
 
+    public void ColorSprite (Color color)
+    {
+        _spriteRenderer.color = color;
+    }
+
     /// <summary>
     /// Sets the sorting order of the card.
     /// </summary>
@@ -130,6 +135,16 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public void SetOrderSorting (int order)
     {
         _spriteRenderer.sortingOrder = order;
+    }
+
+    /// <summary>
+    /// Equality comparison of two cards.
+    /// </summary>
+    /// <param name="card">The card to see if it equal to this card.</param>
+    /// <returns>Returns true if the cards suits and ranks are equal.</returns>
+    public bool IsEqual (Card card)
+    {
+        return card.Suit == Suit && card.Rank == Rank;
     }
 
     /// <summary>
