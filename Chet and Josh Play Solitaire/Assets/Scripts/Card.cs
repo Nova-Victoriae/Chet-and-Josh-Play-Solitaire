@@ -50,50 +50,38 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     /// </param>
     public void OnPointerEnter (PointerEventData eventData)
     {
-        //_spriteRenderer.color = _highLightColor;
-        if (IsFacingUp)
+        Debug.LogFormat("IsFacingUp: {0} - PlayerPickingUpCard: {1}", IsFacingUp, GameController.Instance.PlayerPickingUpCard);
+        if (IsFacingUp && !GameController.Instance.PlayerPickingUpCard)
             CardUtility.OnPointerEnter(this);
     }
 
     public void OnPointerDown (PointerEventData eventData)
     {
-
-        /*IsPickedUp = true;
-        //transform.parent = null;
-        ParentColumn.RemoveCard(this);
-        ParentColumn.AdjustSelf();
-
-        GameController.Instance.TempColumn.AddToColumn(this);*/
         if (IsFacingUp)
+        {
             CardUtility.OnPointerDown(this);
+        }
     }
 
     public void OnPointerUp (PointerEventData eventData)
     {
         if (IsFacingUp)
-            CardUtility.OnPointerUp(this);
-        /*IsPickedUp = false;
-
-        Column columnToAddTo = null;
-
-        foreach (GameObject obj in eventData.hovered)
         {
-            var temp = obj.GetComponent<Column>();
+            var columns = Physics2D.CircleCastAll(transform.position, 0.5f, Vector2.one);
+            Column temp = null;
 
-            if (temp != null && !temp.tag.Equals("Waste"))
+            foreach (var column in columns)
             {
-                columnToAddTo = temp;
+                temp = column.transform.GetComponent<Column>();
+
+                if (temp != null)
+                {
+                    break;
+                }
             }
-        }
 
-        if (columnToAddTo != null)
-        {
-            ParentColumn = columnToAddTo;
+            CardUtility.OnPointerUp(this, temp);
         }
-
-        ParentColumn.AddColumn(GameController.Instance.TempColumn);
-        GameController.Instance.TempColumn.AdjustSelf();
-        ParentColumn.AdjustSelf();*/
     }
 
     /// <summary>
@@ -105,8 +93,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     /// </param>
     public void OnPointerExit (PointerEventData eventData)
     {
-        //_spriteRenderer.color = Color.white;
-        if (IsFacingUp)
+        if (IsFacingUp && !GameController.Instance.PlayerPickingUpCard)
             CardUtility.OnPointerExit(this);
     }
 

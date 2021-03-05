@@ -54,13 +54,9 @@ public class CardUtility
         }
     }
 
-    public static void OnPointerUp (Card card)
-    {
-        GameController.Instance.TempColumn.RemoveCard(card);
-        ParentColumn.AddToColumn(card);
-        ParentColumn.AdjustSelf();
-        card.IsPickedUp = false;
-        ParentColumn = null;
+    public static void OnPointerUp (Card card, Column columnToAdd)
+    { 
+        DeselectCard(card, columnToAdd);
     }
 
     /// <summary>
@@ -81,10 +77,40 @@ public class CardUtility
 
     private static void SelectCard (Card card)
     {
+        GameController.Instance.PlayerPickingUpCard = true;
         ParentColumn = card.ParentColumn;
         card.IsPickedUp = true;
         card.ParentColumn.RemoveCard(card);
         GameController.Instance.TempColumn.AddToColumn(card);
         ParentColumn.AdjustSelf();
+    }
+
+    private static void DeselectCard (Card card, Column column)
+    {
+        GameController.Instance.PlayerPickingUpCard = false;
+        //Debug.LogFormat("Column Name: {0} - Column Tag: {1}", column.name, column.tag);
+
+        switch (column.tag)
+        {
+            case "Foundation":
+                break;
+            case "Tableau":
+                Debug.LogFormat("Column Name: {0} - Column Tag: {1}", column.name, column.tag);
+                card.ParentColumn = column;
+                card.IsPickedUp = false;
+                ParentColumn = null;
+                card.ParentColumn.AddColumn(GameController.Instance.TempColumn);
+                card.ParentColumn.AdjustSelf();
+                break;
+            default:
+                GameController.Instance.PlayerPickingUpCard = false;
+                card.ParentColumn = ParentColumn;
+                card.IsPickedUp = false;
+                ParentColumn = null;
+                card.ParentColumn.AddColumn(GameController.Instance.TempColumn);
+                card.ParentColumn.AdjustSelf();
+                break;
+        }
+
     }
 }

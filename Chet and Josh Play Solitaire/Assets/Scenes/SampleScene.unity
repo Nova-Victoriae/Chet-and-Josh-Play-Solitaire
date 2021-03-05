@@ -167,6 +167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 275914414}
   - component: {fileID: 275914415}
+  - component: {fileID: 275914417}
   - component: {fileID: 275914416}
   m_Layer: 0
   m_Name: Tableau Column 1
@@ -254,6 +255,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offset: {x: 0, y: -0.5, z: 0}
   _totalCardsToShow: 100
+--- !u!61 &275914417
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275914413}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 7.26}
+    newSize: {x: 5, y: 7.26}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 7.26}
+  m_EdgeRadius: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,6 +391,8 @@ GameObject:
   m_Component:
   - component: {fileID: 572550361}
   - component: {fileID: 572550362}
+  - component: {fileID: 572550364}
+  - component: {fileID: 572550363}
   m_Layer: 0
   m_Name: Hearts Foundation Column
   m_TagString: Foundation
@@ -436,6 +465,47 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &572550363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572550360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5883276e472b744693c48fd455bb096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _offset: {x: 0, y: 0, z: 0}
+  _totalCardsToShow: 1
+  suit: 3
+--- !u!61 &572550364
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572550360}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 7.26}
+    newSize: {x: 5, y: 7.26}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 7.26}
+  m_EdgeRadius: 0
 --- !u!1 &656483575
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,6 +516,7 @@ GameObject:
   m_Component:
   - component: {fileID: 656483576}
   - component: {fileID: 656483577}
+  - component: {fileID: 656483579}
   - component: {fileID: 656483578}
   m_Layer: 0
   m_Name: Tableau Column 3
@@ -533,6 +604,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offset: {x: 0, y: -0.5, z: 0}
   _totalCardsToShow: 100
+--- !u!61 &656483579
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656483575}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 7.26}
+    newSize: {x: 5, y: 7.26}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 7.26}
+  m_EdgeRadius: 0
 --- !u!1 &690597215
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,6 +701,8 @@ GameObject:
   m_Component:
   - component: {fileID: 963469516}
   - component: {fileID: 963469517}
+  - component: {fileID: 963469519}
+  - component: {fileID: 963469518}
   m_Layer: 0
   m_Name: Diamonds Foundation Column
   m_TagString: Foundation
@@ -676,6 +775,47 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &963469518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963469515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5883276e472b744693c48fd455bb096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _offset: {x: 0, y: 0, z: 0}
+  _totalCardsToShow: 1
+  suit: 1
+--- !u!61 &963469519
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963469515}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 7.26}
+    newSize: {x: 5, y: 7.26}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 7.26}
+  m_EdgeRadius: 0
 --- !u!1 &968551982
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,6 +826,7 @@ GameObject:
   m_Component:
   - component: {fileID: 968551983}
   - component: {fileID: 968551984}
+  - component: {fileID: 968551986}
   - component: {fileID: 968551985}
   m_Layer: 0
   m_Name: Tableau Column 2
@@ -773,6 +914,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offset: {x: 0, y: -0.5, z: 0}
   _totalCardsToShow: 100
+--- !u!61 &968551986
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968551982}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 7.26}
+    newSize: {x: 5, y: 7.26}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 7.26}
+  m_EdgeRadius: 0
 --- !u!1 &1007726452
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,6 +950,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1007726453}
   - component: {fileID: 1007726454}
+  - component: {fileID: 1007726456}
+  - component: {fileID: 1007726455}
   m_Layer: 0
   m_Name: Spades Foundation Foundation
   m_TagString: Foundation
@@ -855,6 +1024,47 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1007726455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007726452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5883276e472b744693c48fd455bb096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _offset: {x: 0, y: 0, z: 0}
+  _totalCardsToShow: 1
+  suit: 0
+--- !u!61 &1007726456
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007726452}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 7.26}
+    newSize: {x: 5, y: 7.26}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 7.26}
+  m_EdgeRadius: 0
 --- !u!1 &1008271715
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,6 +1075,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1008271716}
   - component: {fileID: 1008271717}
+  - component: {fileID: 1008271719}
   - component: {fileID: 1008271718}
   m_Layer: 0
   m_Name: Tableau Column 6
@@ -952,6 +1163,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offset: {x: 0, y: -0.5, z: 0}
   _totalCardsToShow: 100
+--- !u!61 &1008271719
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008271715}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 7.26}
+    newSize: {x: 5, y: 7.26}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 7.26}
+  m_EdgeRadius: 0
 --- !u!1 &1034265364
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,6 +1233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1206752408}
   - component: {fileID: 1206752409}
+  - component: {fileID: 1206752411}
   - component: {fileID: 1206752410}
   m_Layer: 0
   m_Name: Tableau Column 4
@@ -1083,6 +1321,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offset: {x: 0, y: -0.5, z: 0}
   _totalCardsToShow: 100
+--- !u!61 &1206752411
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206752407}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 7.26}
+    newSize: {x: 5, y: 7.26}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 7.26}
+  m_EdgeRadius: 0
 --- !u!1 &1368835520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,6 +1402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1421159412}
   - component: {fileID: 1421159413}
+  - component: {fileID: 1421159415}
   - component: {fileID: 1421159414}
   m_Layer: 0
   m_Name: Waste Column
@@ -1225,6 +1490,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offset: {x: 0.3, y: 0, z: 0}
   _totalCardsToShow: 6
+--- !u!61 &1421159415
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421159411}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 7.26}
+    newSize: {x: 5, y: 7.26}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 7.26}
+  m_EdgeRadius: 0
 --- !u!1 &1457433259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,6 +1526,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1457433260}
   - component: {fileID: 1457433261}
+  - component: {fileID: 1457433263}
   - component: {fileID: 1457433262}
   m_Layer: 0
   m_Name: Tableau Column 7
@@ -1322,6 +1614,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offset: {x: 0, y: -0.5, z: 0}
   _totalCardsToShow: 100
+--- !u!61 &1457433263
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457433259}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 7.26}
+    newSize: {x: 5, y: 7.26}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 7.26}
+  m_EdgeRadius: 0
 --- !u!1 &1639554504
 GameObject:
   m_ObjectHideFlags: 0
@@ -1415,6 +1733,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2029794579}
   - component: {fileID: 2029794580}
+  - component: {fileID: 2029794582}
   - component: {fileID: 2029794581}
   m_Layer: 0
   m_Name: Tableau Column 5
@@ -1502,6 +1821,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offset: {x: 0, y: -0.5, z: 0}
   _totalCardsToShow: 100
+--- !u!61 &2029794582
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029794578}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 7.26}
+    newSize: {x: 5, y: 7.26}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 7.26}
+  m_EdgeRadius: 0
 --- !u!1 &2072647420
 GameObject:
   m_ObjectHideFlags: 0
@@ -1578,6 +1923,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2117477052}
   - component: {fileID: 2117477053}
+  - component: {fileID: 2117477055}
+  - component: {fileID: 2117477054}
   m_Layer: 0
   m_Name: Clubs Foundation Column
   m_TagString: Foundation
@@ -1650,3 +1997,44 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2117477054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117477051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5883276e472b744693c48fd455bb096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _offset: {x: 0, y: 0, z: 0}
+  _totalCardsToShow: 1
+  suit: 2
+--- !u!61 &2117477055
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117477051}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 7.26}
+    newSize: {x: 5, y: 7.26}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 7.26}
+  m_EdgeRadius: 0

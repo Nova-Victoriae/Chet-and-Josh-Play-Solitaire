@@ -48,7 +48,6 @@ public class Deck : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                 }
 
                 //Debug.LogFormat("Index: {0}, Sprite Name: {1}", ((suit + 1) * (rank + 1)) - 1, data.DeckCardFrounts[((suit + 1) * (rank + 1)) - 1].name);
-                Debug.LogFormat("Linear Count: {0}", linearCount);
                 card.DefineCard((Card.CardRank) (rank), (Card.CardSuit) suit, data.DeckCardFrounts[linearCount], data.DeckCardBack);
                 cardObj.name = card.ToString();
                 _cards.Add(card);

@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public static GameController Instance { get { return _instance; } }
 
     public Column TempColumn { get; private set; }
+    public bool PlayerPickingUpCard { get; set; } = false;
 
     [SerializeField] private Color _background = Color.green;
 
