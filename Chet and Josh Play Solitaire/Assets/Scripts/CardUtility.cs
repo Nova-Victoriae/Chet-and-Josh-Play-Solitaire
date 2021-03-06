@@ -80,6 +80,7 @@ public class CardUtility
         GameController.Instance.PlayerPickingUpCard = true;
         ParentColumn = card.ParentColumn;
         card.IsPickedUp = true;
+        card.SetOrderSorting(300);
         card.ParentColumn.RemoveCard(card);
         GameController.Instance.TempColumn.AddToColumn(card);
         ParentColumn.AdjustSelf();
@@ -93,24 +94,54 @@ public class CardUtility
         switch (column.tag)
         {
             case "Foundation":
+                Debug.LogFormat("Column Name: {0} - Column Tag: {1}", column.name, column.tag);
+                if (column.CanAddTo(card))
+                {
+                    card.ParentColumn = column;
+                    card.transform.parent = card.ParentColumn.transform;
+                    card.IsPickedUp = false;
+                    ParentColumn = null;
+                    card.ParentColumn.AddColumn(GameController.Instance.TempColumn);
+                    card.ParentColumn.AdjustSelf();
+                }
                 break;
             case "Tableau":
-                Debug.LogFormat("Column Name: {0} - Column Tag: {1}", column.name, column.tag);
-                card.ParentColumn = column;
-                card.IsPickedUp = false;
-                ParentColumn = null;
-                card.ParentColumn.AddColumn(GameController.Instance.TempColumn);
-                card.ParentColumn.AdjustSelf();
+                if (column.CanAddTo(card))
+                {
+                //Debug.LogFormat("Column Name: {0} - Column Tag: {1}", column.name, column.tag);
+                    card.ParentColumn = column;
+                    card.transform.parent = card.ParentColumn.transform;
+                    card.IsPickedUp = false;
+                    ParentColumn = null;
+                    card.ParentColumn.AddColumn(GameController.Instance.TempColumn);
+                    card.ParentColumn.AdjustSelf();
+                }
+                else
+                {
+                    GameController.Instance.PlayerPickingUpCard = false;
+                    card.ParentColumn = ParentColumn;
+                    card.transform.parent = card.ParentColumn.transform;
+                    card.IsPickedUp = false;
+                    ParentColumn = null;
+                    card.ParentColumn.AddColumn(GameController.Instance.TempColumn);
+                    card.ParentColumn.AdjustSelf();
+                }
                 break;
             default:
                 GameController.Instance.PlayerPickingUpCard = false;
                 card.ParentColumn = ParentColumn;
+                card.transform.parent = card.ParentColumn.transform;
                 card.IsPickedUp = false;
                 ParentColumn = null;
                 card.ParentColumn.AddColumn(GameController.Instance.TempColumn);
                 card.ParentColumn.AdjustSelf();
                 break;
         }
+
+    }
+
+    private void AddCardToColumn (Card card, Column column)
+    {
 
     }
 }

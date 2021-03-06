@@ -6,11 +6,18 @@ public class FoundationColumn : Column
 {
     [SerializeField] private Card.CardSuit suit = Card.CardSuit.SPADES;
 
-    public override void AddColumn(Column column)
+    public override bool CanAddTo(Card card)
     {
-        if (IsEmpty && column.Cards[0].Suit == suit && column.Cards[0].Rank == Card.CardRank.ACE)
+        if (_cards.Count == 0 && card.Suit == suit && card.Rank == Card.CardRank.ACE)
         {
-            _cards.Add(column.PopTop());
+            return true;
         }
+
+        if (card.Rank == _cards[_cards.Count - 1].Rank + 1 && card.Suit == suit)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -141,5 +141,17 @@ public class Column : MonoBehaviour
 
             _cards[i].SetOrderSorting(i);
         }
+
+        //FlipTopCard();
+    }
+
+    /// <summary>
+    /// If the given card can be added to the column.
+    /// </summary>
+    /// <param name="card">The card to be see if can be added to the column.</param>
+    /// <returns>True if the card can be added to the column.</returns>
+    public virtual bool CanAddTo (Card card)
+    {
+        return true;
     }
 }
