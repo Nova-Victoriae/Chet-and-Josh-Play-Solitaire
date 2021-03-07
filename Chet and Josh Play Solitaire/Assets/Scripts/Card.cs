@@ -50,7 +50,6 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     /// </param>
     public void OnPointerEnter (PointerEventData eventData)
     {
-        Debug.LogFormat("IsFacingUp: {0} - PlayerPickingUpCard: {1}", IsFacingUp, GameController.Instance.PlayerPickingUpCard);
         if (IsFacingUp && !GameController.Instance.PlayerPickingUpCard)
             CardUtility.OnPointerEnter(this);
     }

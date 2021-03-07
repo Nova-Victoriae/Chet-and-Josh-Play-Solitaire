@@ -28,6 +28,6 @@ public class TableauColumn : Column
     public override void RemoveCard(Card card)
     {
         base.RemoveCard(card);
-        FlipTopCard();
+        //FlipTopCard();
     }
 }

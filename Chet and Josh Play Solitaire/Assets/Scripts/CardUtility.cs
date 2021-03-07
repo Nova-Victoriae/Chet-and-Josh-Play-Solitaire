@@ -69,6 +69,13 @@ public class CardUtility
         var column = card.ParentColumn;
         var cardsIndex = column.Cards.IndexOf(card);
 
+        //Debug.LogFormat("Card's Index: {0}", cardsIndex);
+
+        if (cardsIndex < 0)
+        {
+            return;
+        }
+
         for (var i = cardsIndex; i < column.CardCount; i++)
         {
             column.Cards[i].ColorSprite(Color.white);
@@ -89,7 +96,6 @@ public class CardUtility
     private static void DeselectCard (Card card, Column column)
     {
         GameController.Instance.PlayerPickingUpCard = false;
-        //Debug.LogFormat("Column Name: {0} - Column Tag: {1}", column.name, column.tag);
 
         switch (column.tag)
         {
@@ -97,51 +103,44 @@ public class CardUtility
                 Debug.LogFormat("Column Name: {0} - Column Tag: {1}", column.name, column.tag);
                 if (column.CanAddTo(card))
                 {
-                    card.ParentColumn = column;
-                    card.transform.parent = card.ParentColumn.transform;
-                    card.IsPickedUp = false;
-                    ParentColumn = null;
-                    card.ParentColumn.AddColumn(GameController.Instance.TempColumn);
-                    card.ParentColumn.AdjustSelf();
+                    AddCardToColumn(card, column);
                 }
+                else
+                {
+                    AddCardToColumn(card, ParentColumn);
+                }
+
                 break;
             case "Tableau":
                 if (column.CanAddTo(card))
                 {
-                //Debug.LogFormat("Column Name: {0} - Column Tag: {1}", column.name, column.tag);
-                    card.ParentColumn = column;
-                    card.transform.parent = card.ParentColumn.transform;
-                    card.IsPickedUp = false;
-                    ParentColumn = null;
-                    card.ParentColumn.AddColumn(GameController.Instance.TempColumn);
-                    card.ParentColumn.AdjustSelf();
+                    AddCardToColumn(card, column);
                 }
                 else
                 {
-                    GameController.Instance.PlayerPickingUpCard = false;
-                    card.ParentColumn = ParentColumn;
-                    card.transform.parent = card.ParentColumn.transform;
-                    card.IsPickedUp = false;
-                    ParentColumn = null;
-                    card.ParentColumn.AddColumn(GameController.Instance.TempColumn);
-                    card.ParentColumn.AdjustSelf();
+                    AddCardToColumn(card, ParentColumn);
                 }
+
                 break;
             default:
-                GameController.Instance.PlayerPickingUpCard = false;
-                card.ParentColumn = ParentColumn;
-                card.transform.parent = card.ParentColumn.transform;
-                card.IsPickedUp = false;
-                ParentColumn = null;
-                card.ParentColumn.AddColumn(GameController.Instance.TempColumn);
-                card.ParentColumn.AdjustSelf();
+                AddCardToColumn(card, ParentColumn);
                 break;
         }
 
     }
 
-    private void AddCardToColumn (Card card, Column column)
+    /// <summary>
+    /// Adds the card to a column.
+    /// </summary>
+    /// <param name="card">The card that called this method.</param>
+    /// <param name="card">The column to add the card to.</param>
+    private static void AddCardToColumn (Card card, Column column)
     {
-
+        card.ParentColumn = column;
+        card.transform.parent = card.ParentColumn.transform;
+        card.IsPickedUp = false;
+        ParentColumn = null;
+        card.ParentColumn.AddColumn(GameController.Instance.TempColumn);
+        card.ParentColumn.AdjustSelf();
     }
 }
