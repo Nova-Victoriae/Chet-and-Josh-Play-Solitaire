@@ -89,12 +89,20 @@ public class CardUtility
 
     private static void SelectCard (Card card)
     {
+        var column = card.ParentColumn;
+        var cardsIndex = column.Cards.IndexOf(card);
+
         GameController.Instance.PlayerPickingUpCard = true;
-        ParentColumn = card.ParentColumn;
-        card.IsPickedUp = true;
-        card.SetOrderSorting(300);
-        card.ParentColumn.RemoveCard(card);
-        GameController.Instance.TempColumn.AddToColumn(card);
+        ParentColumn = column;
+
+        for (var i = cardsIndex; i < column.CardCount; i++)
+        {
+            var c = column.Cards[i];
+            c.IsPickedUp = true;
+            column.RemoveCard(c);
+            GameController.Instance.TempColumn.AddToColumn(c);
+        }
+
         ParentColumn.AdjustSelf();
     }
 
@@ -104,7 +112,8 @@ public class CardUtility
 
         if (column == null)
         {
-            AddCardToColumn(card, ParentColumn);
+            //AddCardToColumn(card, ParentColumn);
+            AddColumnToColumn(ParentColumn);
             return;
         }
 
@@ -113,30 +122,54 @@ public class CardUtility
             case "Foundation":
                 if (column.CanAddTo(card))
                 {
-                    AddCardToColumn(card, column, true);
+                    //AddCardToColumn(card, column, true);
+                    AddColumnToColumn(column, true);
                 }
                 else
                 {
-                    AddCardToColumn(card, ParentColumn);
+                    //AddCardToColumn(card, ParentColumn);
+                    AddColumnToColumn(ParentColumn);
                 }
 
                 break;
             case "Tableau":
                 if (column.CanAddTo(card))
                 {
-                    AddCardToColumn(card, column, true);
+                    //AddCardToColumn(card, column, true);
+                    AddColumnToColumn(column, true);
                 }
                 else
                 {
-                    AddCardToColumn(card, ParentColumn);
+                    //AddCardToColumn(card, ParentColumn);
+                    AddColumnToColumn(ParentColumn);
                 }
 
                 break;
             default:
-                AddCardToColumn(card, ParentColumn);
+                //AddCardToColumn(card, ParentColumn);
+                AddColumnToColumn(ParentColumn);
                 break;
         }
 
+    }
+
+    private static void AddColumnToColumn (Column column, bool flipTopCard = false)
+    {
+        foreach (var card in column.Cards)
+        {
+            card.ParentColumn = column;
+            card.transform.parent = card.ParentColumn.transform;
+            card.IsPickedUp = false;
+        }
+
+        if (flipTopCard && !ParentColumn.tag.Equals("Waste"))
+        {
+            ParentColumn.FlipTopCard();
+        }
+
+        ParentColumn = null;
+        column.Cards[0].ParentColumn.AddColumn(GameController.Instance.TempColumn);
+        column.Cards[0].ParentColumn.AdjustSelf();
     }
 
     /// <summary>
