@@ -35,6 +35,11 @@ public class Column : MonoBehaviour
     /// </summary>
     public void FlipTopCard ()
     {
+        if (_cards.Count == 0)
+        {
+            return;
+        }
+        
         _cards[_cards.Count - 1].Flip();
     }
 

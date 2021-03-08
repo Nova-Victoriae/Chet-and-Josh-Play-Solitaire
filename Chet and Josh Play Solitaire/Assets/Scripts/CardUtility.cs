@@ -19,6 +19,11 @@ public class CardUtility
         var column = card.ParentColumn;
         var cardsIndex = column.Cards.IndexOf(card);
 
+        if (column == null)
+        {
+            return;
+        }
+
         switch (column.tag)
         {
             case "Waste":
@@ -97,13 +102,18 @@ public class CardUtility
     {
         GameController.Instance.PlayerPickingUpCard = false;
 
+        if (column == null)
+        {
+            AddCardToColumn(card, ParentColumn);
+            return;
+        }
+
         switch (column.tag)
         {
             case "Foundation":
-                Debug.LogFormat("Column Name: {0} - Column Tag: {1}", column.name, column.tag);
                 if (column.CanAddTo(card))
                 {
-                    AddCardToColumn(card, column);
+                    AddCardToColumn(card, column, true);
                 }
                 else
                 {
@@ -114,7 +124,7 @@ public class CardUtility
             case "Tableau":
                 if (column.CanAddTo(card))
                 {
-                    AddCardToColumn(card, column);
+                    AddCardToColumn(card, column, true);
                 }
                 else
                 {
@@ -134,11 +144,17 @@ public class CardUtility
     /// </summary>
     /// <param name="card">The card that called this method.</param>
     /// <param name="card">The column to add the card to.</param>
-    private static void AddCardToColumn (Card card, Column column)
+    private static void AddCardToColumn (Card card, Column column, bool flipTopCard = false)
     {
         card.ParentColumn = column;
         card.transform.parent = card.ParentColumn.transform;
         card.IsPickedUp = false;
+
+        if (flipTopCard && !ParentColumn.tag.Equals("Waste"))
+        {
+            ParentColumn.FlipTopCard();
+        }
+
         ParentColumn = null;
         card.ParentColumn.AddColumn(GameController.Instance.TempColumn);
         card.ParentColumn.AdjustSelf();

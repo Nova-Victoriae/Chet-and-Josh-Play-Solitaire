@@ -8,7 +8,7 @@ public class FoundationColumn : Column
 
     public override bool CanAddTo(Card card)
     {
-        if (_cards.Count == 0 && card.Suit == suit && card.Rank == Card.CardRank.ACE)
+        if (_cards.Count <= 0 && card.Suit == suit && card.Rank == Card.CardRank.ACE)
         {
             return true;
         }
