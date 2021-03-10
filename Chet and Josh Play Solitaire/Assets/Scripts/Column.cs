@@ -76,6 +76,15 @@ public class Column : MonoBehaviour
         }
     }
 
+    public virtual void AddListToColumn (List<Card> cards)
+    {
+        for(var i = 0; i < cards.Count; i++)
+        {
+            _cards.Add(cards[i]);
+            cards[i].transform.parent = transform;
+        }
+    }
+
     /// <summary>
     /// Removes the card from the column.
     /// </summary>
@@ -130,21 +139,48 @@ public class Column : MonoBehaviour
     /// </summary>
     public virtual void AdjustSelf ()
     {
-        for (var i = 0; i < _cards.Count; i++)
+        if (_cards.Count > 0)
         {
-            var indexToStartOffsetAt = CardCount - _totalCardsToShow; // Todo think of better name.
-
-            if (i > indexToStartOffsetAt || _cards.Count < _totalCardsToShow)
+            for (var i = 0; i < _cards.Count; i++)
             {
-                var adjustedIndex = (_cards.Count < _totalCardsToShow) ? i : i - indexToStartOffsetAt;
-                _cards[i].transform.position = transform.position + (_offset * adjustedIndex);
-            }
-            else
-            {
-                _cards[i].transform.position = transform.position;
-            }
+                var indexToStartOffsetAt = CardCount - _totalCardsToShow; // Todo think of better name.
 
-            _cards[i].SetOrderSorting(i);
+                if (i == 0)
+                {
+                    if (_cards.Count > 1)
+                    {
+                        _cards[i].CardAbove = null;
+                        _cards[i].CardBelow = _cards[i+1];
+                    }
+                    else
+                    {
+                        _cards[i].CardAbove = null;
+                        _cards[i].CardBelow = null;
+                    }
+                }
+                else if (i == _cards.Count - 1)
+                {
+                    _cards[i].CardAbove = _cards[i-1];
+                    _cards[i].CardBelow = null;
+                }
+                else
+                {
+                    _cards[i].CardAbove = _cards[i-1];
+                    _cards[i].CardBelow = _cards[i+1];
+                }
+
+                if (i > indexToStartOffsetAt || _cards.Count < _totalCardsToShow)
+                {
+                    var adjustedIndex = (_cards.Count < _totalCardsToShow) ? i : i - indexToStartOffsetAt;
+                    _cards[i].transform.position = transform.position + (_offset * adjustedIndex);
+                }
+                else
+                {
+                    _cards[i].transform.position = transform.position;
+                }
+
+                _cards[i].SetOrderSorting(i);
+            }
         }
 
         //FlipTopCard();

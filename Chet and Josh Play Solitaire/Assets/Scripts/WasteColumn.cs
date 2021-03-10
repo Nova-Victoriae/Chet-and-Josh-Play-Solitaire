@@ -9,4 +9,5 @@ public class WasteColumn : Column
     /// Seems like the every column should work like this.
     /// </summary>
     
+    
 }

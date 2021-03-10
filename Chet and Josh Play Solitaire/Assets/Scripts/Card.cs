@@ -20,6 +20,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public bool IsPickedUp { get; set; }
     public Column ParentColumn { get; set; }
 
+    public Card CardAbove {get; set;}
+    public Card CardBelow {get; set;}
+
     private SpriteRenderer _spriteRenderer = null;
     private Sprite _faceSprite = null;
     private Sprite _backSprite = null;
@@ -50,15 +53,29 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     /// </param>
     public void OnPointerEnter (PointerEventData eventData)
     {
-        if (IsFacingUp && !GameController.Instance.PlayerPickingUpCard)
-            CardUtility.OnPointerEnter(this);
+        //if (IsFacingUp && !GameController.Instance.PlayerPickingUpCard)
+            //CardUtility.OnPointerEnter(this);
+
+        if (IsFacingUp)
+        {
+            if (ParentColumn.tag.Equals("Waste"))
+            {
+                if (CardBelow == null)
+                    CardUtility.OnPointerEnter(new List<Card>(){this});
+            }
+            else
+            {
+                CardUtility.OnPointerEnter(GetBelowCards());
+            }
+        }
     }
 
     public void OnPointerDown (PointerEventData eventData)
     {
         if (IsFacingUp)
         {
-            CardUtility.OnPointerDown(this);
+            //CardUtility.OnPointerDown(this);
+            CardUtility.OnPointerDown(GetBelowCards());
         }
     }
 
@@ -79,7 +96,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                 }
             }
 
-            CardUtility.OnPointerUp(this, temp);
+            //CardUtility.OnPointerUp(this, temp);
+            CardUtility.OnPointerUp(GetBelowCards(), temp);
         }
     }
 
@@ -92,8 +110,17 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     /// </param>
     public void OnPointerExit (PointerEventData eventData)
     {
-        if (IsFacingUp && !GameController.Instance.PlayerPickingUpCard)
-            CardUtility.OnPointerExit(this);
+        //if (IsFacingUp && !GameController.Instance.PlayerPickingUpCard)
+        //CardUtility.OnPointerExit(this);
+        if (ParentColumn.tag.Equals("Waste"))
+        {
+            if (CardBelow  == null)
+                CardUtility.OnPointerExit(new List<Card>() { this });
+        }
+        else
+        {
+            CardUtility.OnPointerExit(GetBelowCards());
+        }
     }
 
     /// <summary>
@@ -109,7 +136,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             _spriteRenderer.sprite = _backSprite;
     }
 
-    public void ColorSprite (Color color)
+    public void SetSpriteColor (Color color)
     {
         _spriteRenderer.color = color;
     }
@@ -150,13 +177,20 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Update()
+    private List<Card> GetBelowCards ()
     {
-        if (IsPickedUp)
+        var cards = new List<Card>();
+
+        cards.Add(this);
+
+        var belowCard = CardBelow;
+
+        while (belowCard != null)
         {
-            var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0;
-            transform.position = mousePosition;
+            cards.Add(CardBelow);
+            belowCard = belowCard.CardBelow;
         }
+
+        return cards;
     }
 }
