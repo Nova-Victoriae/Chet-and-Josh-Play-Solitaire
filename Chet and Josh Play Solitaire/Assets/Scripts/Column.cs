@@ -27,7 +27,15 @@ public class Column : MonoBehaviour
     /// </returns>
     public virtual List<Card> GetFaceUpCards ()
     {
-        return _cards;
+        var faceUpCards =  new List<Card>();
+
+        foreach (Card card in _cards)
+        {
+            if (card.IsFacingUp)
+                faceUpCards.Add(card);
+        }
+
+        return faceUpCards;
     }
 
     /// <summary>
@@ -74,13 +82,18 @@ public class Column : MonoBehaviour
         {
             _cards.Add(column.PopCardAt(i));
         }
+
+        foreach (Card card in _cards)
+        {
+            card.transform.parent = transform;
+        }
     }
 
     public virtual void AddListToColumn (List<Card> cards)
     {
         for(var i = 0; i < cards.Count; i++)
         {
-            _cards.Add(cards[i]);
+            AddToColumn(cards[i]);
             cards[i].transform.parent = transform;
         }
     }
@@ -144,30 +157,6 @@ public class Column : MonoBehaviour
             for (var i = 0; i < _cards.Count; i++)
             {
                 var indexToStartOffsetAt = CardCount - _totalCardsToShow; // Todo think of better name.
-
-                if (i == 0)
-                {
-                    if (_cards.Count > 1)
-                    {
-                        _cards[i].CardAbove = null;
-                        _cards[i].CardBelow = _cards[i+1];
-                    }
-                    else
-                    {
-                        _cards[i].CardAbove = null;
-                        _cards[i].CardBelow = null;
-                    }
-                }
-                else if (i == _cards.Count - 1)
-                {
-                    _cards[i].CardAbove = _cards[i-1];
-                    _cards[i].CardBelow = null;
-                }
-                else
-                {
-                    _cards[i].CardAbove = _cards[i-1];
-                    _cards[i].CardBelow = _cards[i+1];
-                }
 
                 if (i > indexToStartOffsetAt || _cards.Count < _totalCardsToShow)
                 {

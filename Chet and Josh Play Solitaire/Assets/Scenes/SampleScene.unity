@@ -1669,7 +1669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e5c304965a5628479eb9d9b48670a3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _background: {r: 0.15294118, g: 0.46666667, b: 0.078431375, a: 1}
+  _background: {r: 0.38439938, g: 0.1957547, b: 0.5, a: 1}
   _deckPrefab: {fileID: 8931542639029980546, guid: bbe2ec0c86b10f74391914e8e362cfcc, type: 3}
   _deckData: {fileID: 11400000, guid: 18dfae129ad5a0343af9149cb0e36f0d, type: 2}
 --- !u!4 &1639554506

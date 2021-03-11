@@ -9,5 +9,10 @@ public class WasteColumn : Column
     /// Seems like the every column should work like this.
     /// </summary>
     
-    
+    public override List<Card> GetFaceUpCards ()
+    {
+        var faceUpCards = new List<Card>();
+        faceUpCards.Add(_cards[_cards.Count - 1]);
+        return faceUpCards;
+    }
 }
