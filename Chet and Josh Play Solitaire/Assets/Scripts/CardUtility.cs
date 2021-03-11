@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CardUtility
 {
+    private static Column ParentColumn { get; set; }
+
     public static bool AreCardsEqual (Card a, Card b)
     {
         var suitsEqual = a.Suit == b.Suit;
@@ -26,35 +28,11 @@ public class CardUtility
 
     public static void OnPointerDown (Card card)
     {
-        // If there are cards in the temp column
-        //      Attempt to move them to this column.
-        // Else
-        //      Add all face up cards to the temp column.
-
-        if (GameController.Instance.TempColumn.CardCount > 0)
-        {
-            var column = card.ParentColumn;
-            var oldParent = GameController.Instance.TempColumn.Cards[0].ParentColumn;
-
-            if (column.CanAddTo(GameController.Instance.TempColumn.Cards[0]))
-            {
-                Debug.LogFormat("Adding card to the new column");
-                column.AddColumn(GameController.Instance.TempColumn);
-            }
-            else
-            {
-                Debug.LogFormat("Adding card to the old column");
-                oldParent.AddColumn(GameController.Instance.TempColumn);
-            }
-
-            column.AdjustSelf();
-            oldParent.AdjustSelf();
-        }
-        else
-        {
-            var faceUpCards = card.ParentColumn.GetFaceUpCards();
-            GameController.Instance.TempColumn.AddListToColumn(faceUpCards);
-        }
+        // I HAVE NO IDEA HOW TO MAKE THIS WORK!!!!!!!!
+        // I JUST NEED TO CHECK IF THE PLAYER IS PICKING UP A
+        // CARD AND IF THEY ARE THEN MOVE THE CARD TO THE NEW COLUMN.
+        // ELSE SET THE PLAYER TO PICKING UP A CARD AND ADD THE CARD
+        // TO THE TEMP COLUMN.
     }
 
     private static void ColorCards (List<Card> cards, Color color)

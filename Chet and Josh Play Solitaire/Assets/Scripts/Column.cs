@@ -27,12 +27,28 @@ public class Column : MonoBehaviour
     /// </returns>
     public virtual List<Card> GetFaceUpCards ()
     {
-        var faceUpCards =  new List<Card>();
+        var faceUpCards = new List<Card>();
 
         foreach (Card card in _cards)
         {
             if (card.IsFacingUp)
                 faceUpCards.Add(card);
+        }
+
+        return faceUpCards;
+    }
+
+    public virtual List<Card> GetFaceUpCardsAt (Card card)
+    {
+        var faceUpCards = new List<Card>();
+        var startingIndex = _cards.IndexOf(card);
+
+        for (var i = startingIndex; i < _cards.Count; i++)
+        {
+            if (_cards[i].IsFacingUp)
+            {
+                faceUpCards.Add (_cards[i]);
+            }
         }
 
         return faceUpCards;
