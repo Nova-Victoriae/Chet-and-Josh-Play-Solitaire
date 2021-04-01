@@ -33,6 +33,42 @@ public class CardUtility
         // CARD AND IF THEY ARE THEN MOVE THE CARD TO THE NEW COLUMN.
         // ELSE SET THE PLAYER TO PICKING UP A CARD AND ADD THE CARD
         // TO THE TEMP COLUMN.
+
+        if (GameController.Instance.TempColumn.CardCount > 0) // If the temp column has cards in it.
+        {
+            if (card.ParentColumn.CanAddTo(GameController.Instance.TempColumn.Cards[0]))
+            {
+                Column temp = GameController.Instance.TempColumn.Cards[0].ParentColumn;
+
+                card.ParentColumn.AddColumn(GameController.Instance.TempColumn);
+                
+                foreach(Card c in card.ParentColumn.Cards)
+                {
+                    c.ParentColumn = card.ParentColumn;
+                }
+
+                temp.AdjustSelf();
+                temp.FlipTopCard();
+                card.ParentColumn.AdjustSelf();
+            }
+            else
+            {
+                var c = GameController.Instance.TempColumn.Cards[0];
+                c.ParentColumn.AddColumn(GameController.Instance.TempColumn);
+                c.ParentColumn.AdjustSelf();
+            }
+        }
+        else // The temp column has no cards in it.
+        {
+            // Add the card to the temp column.
+            var faceUpCards = card.ParentColumn.GetFaceUpCardsAt(card);
+            GameController.Instance.TempColumn.AddListToColumn(faceUpCards);
+            
+            foreach(Card c in faceUpCards)
+            {
+                card.ParentColumn.RemoveCardAt(card.ParentColumn.Cards.IndexOf(card));
+            }
+        }
     }
 
     private static void ColorCards (List<Card> cards, Color color)
